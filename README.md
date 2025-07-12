@@ -5,6 +5,8 @@ This repository contains the two projects completed as the final exam for the *P
 - Project n.37 - Explosive percolation (Score: 0.5)
 - Project n.45 - Constructing a graph of Europe's railway infrastructure (Score: 1.0)
 
+An exhaustive report covering both projects is provided in `report.pdf`
+
 ## Project n.37 - Explosive percolation
 This project focuses on the simulation and analysis of Achlioptas processes, which lead to *explosive percolation*, on various network topologies (ER-like, scale-free). By implementing these processes, we study how sudden transitions in connectivity emerge, contrasting them with classical percolation models.
 
