@@ -19,6 +19,10 @@ Inside `gen\`:
 
 To boost further performances, OpenMP framework was used to achieve SPMD parallelism (so, when compiling, one should also link against OpenMP libraries)
 
+Output data include:
+- LCC size/ $\chi$ with respect to m
+- Finite size cluster distribution around criticality
+- Scaling of transition window
 
 ## Project n.45 - Railways in Europe
 This project builds a railway network graph starting from EUROGEOMAP geospatial data, enabling a network-like representation of railway connectivity in Europe
