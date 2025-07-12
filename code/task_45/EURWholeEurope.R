@@ -5,6 +5,23 @@ library(countrycode)
 library(igraph)
 library(geosphere)
 
+processDataFrame <- function(shape.file){
+  coords <- st_coordinates(shape.file$geometry)
+  shape.file <- cbind(shape.file, coords)
+
+  nodeID <- integer(length(shape.file$NAMA1))
+  nodeID[order(shape.file$NAMN1)] = 1:length(shape.file$NAMN1)
+  df <- data.frame(
+    nodeID = nodeID,
+    nodeLabel = shape.file$NAMN1,
+    latitude = coords[,2],
+    longitude = coords[,1],
+    country_name = countrycode(shape.file$ICC, origin = "iso2c", destination = "country.name"),
+    country_ISO3 = countrycode(shape.file$ICC, origin = "iso2c", destination = "iso3c")
+  )
+  return(df)
+}
+
 #####################################################################
 ## given a link, it finds the stations (of origin and destination) ##
 ## closest to its endpoints. If none is found, returns NA          ##
@@ -26,6 +43,7 @@ findNearestStation <- function(link, dfCountry, minimumDistanceStation){
 }
 
 
+
 #####################################################################
 ### Given a downstream node, tries to build the chain and         ###
 ### connect its root node (i.e. upstreams), eventually parsing    ###
@@ -45,7 +63,7 @@ findUpstreamChain <- function(downstream, potentialUpstreams, minimumDistanceRai
       any(is.na(currentCoords)) || ncol(currentCoords) != 2 || nrow(currentCoords) == 0 ||
       any(is.na(upstreamCoords)) || ncol(upstreamCoords) != 2 || nrow(upstreamCoords) == 0
     ) {
-      warning("Coordinate non valide o upstream vuoto, interrompo la ricerca")
+      warning("Stop")
       break
     }
 
@@ -121,7 +139,7 @@ coordsLink <- coordsLink |>
   ) |> 
   ungroup()
 # apply the findNearestStation
-res <- lapply(1:nrow(coordsLink), function(i) findNearestStation(coordsLink[i,], euNodes, 50000))
+res <- lapply(1:nrow(coordsLink), function(i) findNearestStation(coordsLink[i,], euNodes, 70000))
 coordsLink$from <- sapply(res, `[[`, "origin")
 coordsLink$to <- sapply(res, `[[`, "destination")
 
@@ -138,7 +156,7 @@ nonConnected <- coordsLink |> filter(is.na(to))
 # iterator over the downstreams
 for(d in 1:nrow(downstreams)){
   # get the chain
-  findUpstreamChain(downstreams[d,], nonConnected, 50000) -> chain
+  findUpstreamChain(downstreams[d,], nonConnected, 70000) -> chain
   # and if succesfull, add it to the definitive df
   if (!is.null((chain))){
     toAdd <- data.frame(L1 = chain[1,"L1"],
@@ -155,7 +173,7 @@ for(d in 1:nrow(downstreams)){
 finalDF_clean <- finalDF[!is.na(finalDF$from) & !is.na(finalDF$to), ]
 finalDF_clean -> edges
 edges <- edges %>% distinct(to, from, .keep_all = TRUE)
-
+edges |> filter(from != to) -> edges
 
 pdf("EU.pdf")
 g <- graph_from_data_frame(
@@ -175,4 +193,30 @@ plot(g,
      edge.width = 0.5,
      main = "EU")
 
+dev.off()
+
+
+# And write everything to memory
+dir.create("./data/EU", recursive = TRUE, showWarnings = FALSE)
+
+# write vertices
+write.table(euNodes,"./data/EU/vertices.txt", row.names = F)
+write.table(edges[,c("from", "to")],"./data/EU/edges.txt", row.names = F)
+
+
+
+############################ Degree distribution ############################
+# Compute the degree distribution
+degree_distribution <- degree(g, mode = "all")
+# Create a data frame for plotting
+degree_df <- data.frame(degree = degree_distribution)
+# Plot the degree distribution
+pdf("DDEU.pdf")
+p<-ggplot(degree_df, aes(x = degree)) +
+  geom_histogram(binwidth = 1, fill = "blue", color = "black", alpha = 0.7) +
+  labs(title = paste("Degree Distribution for", country.code),
+       x = "Degree",
+       y = "Frequency") +
+  theme_minimal() 
+print(p)
 dev.off()

@@ -31,3 +31,5 @@ This project builds a railway network graph starting from EUROGEOMAP geospatial 
 The task was performed in R. In particular, a RStudio Markdown is available. Alternatively, two plain R scripts are also provided:
 - `EURailNetwork.R`: Builds the railroad network for a specific country, given its country code. Outputs (in `data/`) two files for each country, one containing information on nodes-stations and one containing network connectivity information. It also creates a pdf file representing the graph
 - `EURWholeEurope.R`: Similar as above, but considering data from all Europe
+
+N.B. Warnings when running R code may run. This is normal, it's embedded in the script

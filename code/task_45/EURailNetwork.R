@@ -99,7 +99,7 @@ findUpstreamChain <- function(downstream, potentialUpstreams, minimumDistanceRai
       any(is.na(currentCoords)) || ncol(currentCoords) != 2 || nrow(currentCoords) == 0 ||
       any(is.na(upstreamCoords)) || ncol(upstreamCoords) != 2 || nrow(upstreamCoords) == 0
     ) {
-      warning("Coordinate non valide o upstream vuoto, interrompo la ricerca")
+      warning("Stop")
       break
     }
 
@@ -212,8 +212,8 @@ for (cc in validCountries){
 }
 
 
-# Choose the country
-country.code = validCountries[11]
+# Choose the country  7, 11, 12, 2
+country.code = validCountries[12]
 print(paste("\n Selected: ", country.code))
 
 # Extract the vertices dataframes and the edge dataframes ...
@@ -253,13 +253,13 @@ extractRailRoadsDataFrame(country.code) -> edges_sf
 nodes_sf <- st_as_sf(nodes_sf)
 edges_sf <- st_as_sf(edges_sf)
 
-ggplot() +
+p<- ggplot() +
   geom_sf(data = edges_sf, color = "gray50", size = 0.3) +       # le ferrovie
   geom_sf(data = nodes_sf, color = "red", size = 1.5) +          # le stazioni
   theme_minimal() +
   labs(title = country.code) +
   coord_sf()
-
+print(p)
 dev.off()
 
 # And write everything to memory
@@ -268,3 +268,21 @@ dir.create(paste("./data/", country.code, sep = ""), recursive = TRUE, showWarni
 # write vertices
 write.table(vertices,paste("./data/", country.code, "/vertices.txt", sep = ""), row.names = F)
 write.table(edges[,c("from", "to")],paste("./data/", country.code, "/edges.txt", sep = ""), row.names = F)
+
+
+
+############################ Degree distribution ############################
+# Compute the degree distribution
+degree_distribution <- degree(g, mode = "all")
+# Create a data frame for plotting
+degree_df <- data.frame(degree = degree_distribution)
+# Plot the degree distribution
+pdf("DD.pdf")
+p<-ggplot(degree_df, aes(x = degree)) +
+  geom_histogram(binwidth = 1, fill = "blue", color = "black", alpha = 0.7) +
+  labs(title = paste("Degree Distribution for", country.code),
+       x = "Degree",
+       y = "Frequency") +
+  theme_minimal() 
+print(p)
+dev.off()
