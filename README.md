@@ -14,13 +14,13 @@ The simulation is implemented in C++ and builds a percolation algorithm based on
 - Folder `proc\`: Data analysis performed using ROOT software (however, any data analysis oriented language will do the job)
 Inside `gen\`:
 - `include\`: header files (automatically included)
-- `lib\`: a lib-like C++ file that needs to be linked with the main.cpp
-- Four different "main" C++ files. Each one of those, when linked with `lib\graph.cpp` will generate data depending on its specific purpose
+- `lib\`: a lib-like C++ implementation file that needs to be linked with the main.cpp
+- Four different "main" C++ files. Each one of those, when linked with `lib\graph.cpp` will generate data depending on its specific purpose. Data are saved in the local `data\` folder, ready to be analyzed
 
 To boost further performances, OpenMP framework was used to achieve SPMD parallelism (so, when compiling, one should also link against OpenMP libraries)
 
 Output data include:
-- LCC size/ $\chi$ with respect to m
+- LCC size/ SLCC size / $\chi$ with respect to $m$
 - Finite size cluster distribution around criticality
 - Scaling of transition window
 
@@ -29,7 +29,7 @@ This project builds a railway network graph starting from EUROGEOMAP geospatial 
 
 #### Implementation details
 The task was performed in R. In particular, a RStudio Markdown is available. Alternatively, two plain R scripts are also provided:
-- `EURailNetwork.R`: Builds the railroad network for a specific country, given its country code. Outputs (in `data/`) two files for each country, one containing information on nodes-stations and one containing network connectivity information. It also creates a pdf file representing the graph
+- `EURailNetwork.R`: Builds the railroad network for a specific country, given its country code. Outputs (in `data/`) two files for each country, one containing information on nodes-stations and one containing network connectivity information. It also creates a pdf file representing the graph and the degree distribution
 - `EURWholeEurope.R`: Similar as above, but considering data from all Europe
 
 N.B. Warnings when running R code may run. This is normal, it's embedded in the script
