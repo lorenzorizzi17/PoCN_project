@@ -1,0 +1,74 @@
+\begin{thebibliography}{8}
+\providecommand{\natexlab}[1]{#1}
+\providecommand{\url}[1]{\texttt{#1}}
+\expandafter\ifx\csname urlstyle\endcsname\relax
+  \providecommand{\doi}[1]{doi: #1}\else
+  \providecommand{\doi}{doi: \begingroup \urlstyle{rm}\Url}\fi
+
+\bibitem[Achlioptas et~al.(2009)Achlioptas, D'Souza, and Spencer]{Achlioptas}
+Dimitris Achlioptas, Raissa~M. D'Souza, and Joel Spencer.
+\newblock Explosive percolation in random networks.
+\newblock \emph{Science}, 323\penalty0 (5920):\penalty0 1453--1455, 2009.
+\newblock \doi{10.1126/science.1167782}.
+\newblock URL \url{https://www.science.org/doi/abs/10.1126/science.1167782}.
+
+\bibitem[Boccaletti et~al.(2016)Boccaletti, Almendral, Guan, Leyva, Liu,
+  Sendiña-Nadal, Wang, and Zou]{BOCCALETTI20161}
+S.~Boccaletti, J.A. Almendral, S.~Guan, I.~Leyva, Z.~Liu, I.~Sendiña-Nadal,
+  Z.~Wang, and Y.~Zou.
+\newblock Explosive transitions in complex networks’ structure and dynamics:
+  Percolation and synchronization.
+\newblock \emph{Physics Reports}, 660:\penalty0 1--94, 2016.
+\newblock ISSN 0370-1573.
+\newblock \doi{https://doi.org/10.1016/j.physrep.2016.10.004}.
+\newblock URL
+  \url{https://www.sciencedirect.com/science/article/pii/S0370157316303180}.
+\newblock Explosive transitions in complex networks’ structure and dynamics:
+  Percolation and synchronization.
+
+\bibitem[Cho et~al.(2009)Cho, Kim, Park, Kahng, and Kim]{Cho_2009}
+Y.~S. Cho, J.~S. Kim, J.~Park, B.~Kahng, and D.~Kim.
+\newblock Percolation transitions in scale-free networks under the achlioptas
+  process.
+\newblock \emph{Physical Review Letters}, 103\penalty0 (13), September 2009.
+\newblock ISSN 1079-7114.
+\newblock \doi{10.1103/physrevlett.103.135702}.
+\newblock URL \url{http://dx.doi.org/10.1103/PhysRevLett.103.135702}.
+
+\bibitem[da~Costa et~al.(2010)da~Costa, Dorogovtsev, Goltsev, and Mendes]{cont}
+R.~A. da~Costa, S.~N. Dorogovtsev, A.~V. Goltsev, and J.~F.~F. Mendes.
+\newblock Explosive percolation transition is actually continuous.
+\newblock \emph{Phys. Rev. Lett.}, 105:\penalty0 255701, Dec 2010.
+\newblock \doi{10.1103/PhysRevLett.105.255701}.
+\newblock URL \url{https://link.aps.org/doi/10.1103/PhysRevLett.105.255701}.
+
+\bibitem[{EuroGeographics}(2021)]{EGM}
+{EuroGeographics}.
+\newblock Euroglobalmap.
+\newblock \url{https://www.mapsforeurope.org/datasets/euro-global-map}, 2021.
+\newblock Accessed: 2025-07-12.
+
+\bibitem[Li et~al.(2021)Li, Liu, Lü, Hu, Xu, and Zhang]{Li_2021}
+Ming Li, Run-Ran Liu, Linyuan Lü, Mao-Bin Hu, Shuqi Xu, and Yi-Cheng Zhang.
+\newblock Percolation on complex networks: Theory and application.
+\newblock \emph{Physics Reports}, 907:\penalty0 1–68, April 2021.
+\newblock ISSN 0370-1573.
+\newblock \doi{10.1016/j.physrep.2020.12.003}.
+\newblock URL \url{http://dx.doi.org/10.1016/j.physrep.2020.12.003}.
+
+\bibitem[Radicchi and Fortunato(2010)]{Radicchi}
+Filippo Radicchi and Santo Fortunato.
+\newblock Explosive percolation: A numerical analysis.
+\newblock \emph{Phys. Rev. E}, 81:\penalty0 036110, Mar 2010.
+\newblock \doi{10.1103/PhysRevE.81.036110}.
+\newblock URL \url{https://link.aps.org/doi/10.1103/PhysRevE.81.036110}.
+
+\bibitem[Ziff(2009)]{Ziff}
+Robert~M. Ziff.
+\newblock Explosive growth in biased dynamic percolation on two-dimensional
+  regular lattice networks.
+\newblock \emph{Phys. Rev. Lett.}, 103:\penalty0 045701, Jul 2009.
+\newblock \doi{10.1103/PhysRevLett.103.045701}.
+\newblock URL \url{https://link.aps.org/doi/10.1103/PhysRevLett.103.045701}.
+
+\end{thebibliography}
